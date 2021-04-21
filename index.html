@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+    <title>Битик</title>
+  </head>
+  <body>
+    <br>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h1>Транслитерация имён</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <input id="userInput" placeholder="Текстти бул жерге көчүрүңүз /жазыңыз" spellcheck="false">
+          <button onclick="document.getElementById('result').textContent = convert_to_enesaj(document.getElementById('userInput').value); document.getElementById('result').setAttribute('dir', 'rtl');" title="Кирил арибиндеги текстти байырқы қырғыз [руна сымал] жазмасына қоторуңуз"></em>Перевести на 𐰄𐱅𐰄𐰚</button>
+          <button class="buton" onclick="document.getElementById('userInput').value = ''; document.getElementById('result').textContent = '';">Очистить</button>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col">
+          <h2 id="result" dir="rtl"></h2>
+        </div>
+      </div>
+    </div>
+    
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+<script async="">
+String.prototype.replaceAll = function(a, b) {
+    return this.split(a).join(b)
+};
+
+var  translite_enesaj = {А: "𐰀", а:"𐰀", Ә:"𐰂", ә:"𐰂", Б:"𐰋", б:"𐰋", В:"𐰊", в:"𐰊", Ғ:"𐰍", ғ:"𐰍", Ҕ:"𐰍", ҕ:"𐰍", Г:"𐰏", г:"𐰏", Д:"𐰓", д:"𐰓", Ҙ:"𐰓", ҙ:"𐰓", Е:"𐰅", е:"𐰅", Ж:"𐰙", ж:"𐰙", 'Җ':"𐰙", 'җ':"𐰙", 'Ӌ':"𐰙", 'ӌ':"𐰙", 'Ҷ':"𐰙", 'ҷ':"𐰙",'Ј':"𐰙",'ј':"𐰙", З:"𐰕", з:"𐰕", И:"𐰄", и:"𐰄", 'І':"𐰄", 'і':"𐰄", Й:"𐰘", й:"𐰘", К:"𐰚", к:"𐰚", Қ:"𐰴", қ: "𐰴", Ҡ:"𐰴", ҡ:"𐰴", Л:"𐰠", л:"𐰠", М:"𐰢", м:"𐰢", Н:"𐰤", н:"𐰤", Ң:"𐰭", ң:"𐰭", ӊ:'𐰭', Ҥ:"𐰭", ҥ:"𐰭", О:"𐰆", о:"𐰆", Ө:"𐰇", ө:"𐰇", Ӧ:"𐰇", ӧ:"𐰇", П:"𐰯", п:"𐰯", Р:"𐰼", р:"𐰼", С:"𐰾", с:"𐰾", Ҫ:"𐰾", ҫ:"𐰾", Т:"𐱅", т:"𐱅", У:"𐰆", у:"𐰆", 'Ұ':"𐰆", 'ұ':"𐰆", Ү:"𐰈", ү:"𐰈", Ӱ:"𐰈", ӱ:"𐰈", Ф:"𐰯", ф:"𐰯", Х:"𐰝", х:"𐰝", Һ:"𐰝", һ:"𐰝", Ц:"𐰾", ц:"𐰾", Ч:"𐰲", ч:"𐰲", Ш:"𐱁", ш:"𐱁", Щ:"𐱁", щ:"𐱁", Ы:"𐰃", ы:"𐰃", Э:"𐰅",  э:"𐰅", ь:'', ъ:"\'", '-':'\־', ';':'\؛', ',':'\٬', '.':'\٠', ':':'\׃', '?':'\؟',}; 
+var _translate_enesaj = {Ё:"𐰖𐰆",ё:"𐰖𐰆", Я:"𐰖𐰀",я:"𐰖𐰀", Ю:" 𐰖𐰆",ю:"𐰖𐰆"};
+
+var convert_to_enesaj = function(text) {
+    for (var key in _translate_enesaj) {
+        text = text.replaceAll(key.toString(), _translate_enesaj[key]);
+
+        text = text.replace(/ье/g, "\𐰘𐰅");
+        text = text.replace(/ьЕ/g, "\𐰘𐰅");
+        text = text.replace(/Ье/g, "\𐰘𐰅");
+        text = text.replace(/ЬЕ/g, "\𐰘𐰅");
+        text = text.replace(/(нь|Нь|нЬ|НЬ|нй|Нй|нЙ|НЙ)/g, "\𐰪");
+
+        text = text.replace(/(б|в|г|д|ж|з|к|л|м|н|п|р|с|т|ф|х|ц|ч|ш|щ| Б|В|Г|Д|Ж|З|К|Л|М|Н|П|Р|С|Т|Ф|Х|Ц|Ч|Ш|Щ)ё/g, "$1\𐰇");
+        text = text.replace(/(б|в|г|д|ж|з|к|л|м|н|п|р|с|т|ф|х|ц|ч|ш|щ| Б|В|Г|Д|Ж|З|К|Л|М|Н|П|Р|С|Т|Ф|Х|Ц|Ч|Ш|Щ)Ё/g, "$1\𐰇");
+        text = text.replace(/(б|в|г|д|ж|з|к|л|м|н|п|р|с|т|ф|х|ц|ч|ш|щ| Б|В|Г|Д|Ж|З|К|Л|М|Н|П|Р|С|Т|Ф|Х|Ц|Ч|Ш|Щ)ю/g, "$1\𐰈");
+        text = text.replace(/(б|в|г|д|ж|з|к|л|м|н|п|р|с|т|ф|х|ц|ч|ш|щ| Б|В|Г|Д|Ж|З|К|Л|М|Н|П|Р|С|Т|Ф|Х|Ц|Ч|Ш|Щ)Ю/g, "$1\𐰈");
+        text = text.replace(/(б|в|г|д|ж|з|к|л|м|н|п|р|с|т|ф|х|ц|ч|ш|щ| Б|В|Г|Д|Ж|З|К|Л|М|Н|П|Р|С|Т|Ф|Х|Ц|Ч|Ш|Щ)я/g, "$1\𐰂");
+        text = text.replace(/(б|в|г|д|ж|з|к|л|м|н|п|р|с|т|ф|х|ц|ч|ш|щ| Б|В|Г|Д|Ж|З|К|Л|М|Н|П|Р|С|Т|Ф|Х|Ц|Ч|Ш|Щ)Я/g, "$1\𐰂");
+        text = text.replace(/к(?=ы|Ы)/g, "𐰶");
+        text = text.replace(/К(?=ы|Ы)/g, "𐰶");
+        text = text.replace(/(ы|Ы)к/g, "$1\𐰶");
+        text = text.replace(/(ы|Ы)К/g, "$1\𐰶");
+        text = text.replace(/к(?=о|у|О|У)/g, "𐰸");
+        text = text.replace(/К(?=о|у|О|У)/g, "𐰸");
+        text = text.replace(/(о|у|О|У)к/g, "$1\𐰸");
+        text = text.replace(/(о|у|О|У)К/g, "$1\𐰸");
+        text = text.replace(/к(?=а|А)/g, "𐰴");
+        text = text.replace(/К(?=а|А)/g, "𐰴");
+        text = text.replace(/(а|А)к/g, "$1\𐰴");
+        text = text.replace(/(а|А)К/g, "$1\𐰴");
+        text = text.replace(/к(?=ө|ү|Ө|Ү)/g, "𐰜");
+        text = text.replace(/К(?=ө|ү|Ө|Ү)/g, "𐰜");
+        text = text.replace(/(ө|ү|Ө|Ү)к/g, "$1\𐰜");
+        text = text.replace(/(ө|ү|Ө|Ү)К/g, "$1\𐰜");
+
+        text = text.replace(/Б(?=а|ы|о|у|А|Ы|О|У)/g, "𐰉");
+        text = text.replace(/б(?=а|ы|о|у|А|Ы|О|У)/g, "𐰉");
+        text = text.replace(/(а|ы|о|у|А|Ы|О|У)Б/g, "$1\𐰉");
+        text = text.replace(/(а|ы|о|у|А|Ы|О|У)б/g, "$1\𐰉");
+
+        text = text.replace(/Г(?=а|ы|о|у|А|Ы|О|У)/g, "𐰍");
+        text = text.replace(/г(?=а|ы|о|у|А|Ы|О|У)/g, "𐰍");
+        text = text.replace(/(а|ы|о|у|А|Ы|О|У)Г/g, "$1\𐰍");
+        text = text.replace(/(а|ы|о|у|А|Ы|О|У)г/g, "$1\𐰍");
+        text = text.replace(/Д(?=а|ы|о|у|А|Ы|О|У)/g, "𐰒");
+        text = text.replace(/д(?=а|ы|о|у|А|Ы|О|У)/g, "𐰒");
+        text = text.replace(/(а|ы|о|у|А|Ы|О|У)Д/g, "$1\𐰒");
+        text = text.replace(/(а|ы|о|у|А|Ы|О|У)д/g, "$1\𐰒");
+        text = text.replace(/Ж(?=а|ы|о|у|А|Ы|О|У)/g, "𐰳");
+        text = text.replace(/ж(?=а|ы|о|у|А|Ы|О|У)/g, "𐰳");
+        text = text.replace(/(а|ы|о|у|А|Ы|О|У)Ж/g, "$1\𐰳");
+        text = text.replace(/(а|ы|о|у|А|Ы|О|У)ж/g, "$1\𐰳");
+        text = text.replace(/Й(?=а|ы|о|у|А|Ы|О|У)/g, "𐰖");
+        text = text.replace(/й(?=а|ы|о|у|А|Ы|О|У)/g, "𐰖");
+        text = text.replace(/(а|ы|о|у|А|Ы|О|У)Й/g, "$1\𐰖");
+        text = text.replace(/(а|ы|о|у|А|Ы|О|У)й/g, "$1\𐰖");
+        text = text.replace(/Л(?=а|ы|о|у|А|Ы|О|У)/g, "𐰞");
+        text = text.replace(/л(?=а|ы|о|у|А|Ы|О|У)/g, "𐰞");
+        text = text.replace(/(а|ы|о|у|А|Ы|О|У)Л/g, "$1\𐰞");
+        text = text.replace(/(а|ы|о|у|А|Ы|О|У)л/g, "$1\𐰞");
+        text = text.replace(/Н(?=а|ы|о|у|А|Ы|О|У)/g, "𐰣");
+        text = text.replace(/н(?=а|ы|о|у|А|Ы|О|У)/g, "𐰣");
+        text = text.replace(/(а|ы|о|у|А|Ы|О|У)Н/g, "$1\𐰣");
+        text = text.replace(/(а|ы|о|у|А|Ы|О|У)н/g, "$1\𐰣");
+        text = text.replace(/Р(?=а|ы|о|у|А|Ы|О|У)/g, "𐰺");
+        text = text.replace(/р(?=а|ы|о|у|А|Ы|О|У)/g, "𐰺");
+        text = text.replace(/(а|ы|о|у|А|Ы|О|У)Р/g, "$1\𐰺");
+        text = text.replace(/(а|ы|о|у|А|Ы|О|У)р/g, "$1\𐰺");
+        text = text.replace(/С(?=а|ы|о|у|А|Ы|О|У)/g, "𐰽");
+        text = text.replace(/с(?=а|ы|о|у|А|Ы|О|У)/g, "𐰽");
+        text = text.replace(/(а|ы|о|у|А|Ы|О|У)С/g, "$1\𐰽");
+        text = text.replace(/(а|ы|о|у|А|Ы|О|У)с/g, "$1\𐰽");
+        text = text.replace(/Т(?=а|ы|А|Ы|о|О|у|У)/g, "𐱄");
+        text = text.replace(/т(?=а|ы|А|Ы|о|О|у|У)/g, "𐱄");
+        text = text.replace(/(а|ы|А|Ы|о|О|у|У)Т/g, "$1\𐱄");
+        text = text.replace(/(а|ы|А|Ы|о|О|у|У)т/g, "$1\𐱄");
+        text = text.replace(/Ц(?=а|ы|о|у|А|Ы|О|У)/g, "𐰽");
+        text = text.replace(/ц(?=а|ы|о|у|А|Ы|О|У)/g, "𐰽");
+        text = text.replace(/(а|ы|о|у|А|Ы|О|У)Ц/g, "$1\𐰽");
+        text = text.replace(/(а|ы|о|у|А|Ы|О|У)ц/g, "$1\𐰽");
+        text = text.replace(/Ч(?=и|И)/g, "𐰱");
+        text = text.replace(/ч(?=и|И)/g, "𐰱");
+        text = text.replace(/(и|И)Ч/g, "$1\𐰱");
+        text = text.replace(/(и|И)ч/g, "$1\𐰱");
+    }
+    for (key in translite_enesaj) {
+        text = text.replaceAll(key.toString(), translite_enesaj[key]);
+
+        text = text.replace(/𐰶(?=𐰀)/g, "𐰴");
+        text = text.replace(/𐰶(?=𐰆)/g, "𐰸");
+        text = text.replace(/𐰶(?=𐰅|𐰄|𐰂)/g, "𐰚");
+        text = text.replace(/𐰶(?=𐰈|𐰇)/g, "𐰜");
+        text = text.replace(/𐰸(?=𐰀)/g, "𐰴");
+        text = text.replace(/𐰸(?=𐰃)/g, "𐰶");
+        text = text.replace(/𐰸(?=𐰅|𐰄|𐰂)/g, "𐰚");
+        text = text.replace(/𐰸(?=𐰈|𐰇)/g, "𐰜");
+        text = text.replace(/𐰴(?=𐰃)/g, "𐰶");
+        text = text.replace(/𐰴(?=𐰆)/g, "𐰸");
+        text = text.replace(/(𐰉|𐰊|𐰑|𐰒|𐰍|𐰎|𐰀𐰢|𐰃𐰢|𐰆𐰢| 𐰀𐰯|𐰃𐰯|𐰆𐰯|𐰞|𐰟|𐰣|𐰀𐰭|𐰃𐰭|𐰆𐰭|𐰺|𐰻|𐰽|𐰀𐱁|𐰃𐱁|𐰆𐱁|𐱃|𐱄|𐰖|𐰗|𐰴|𐰵|𐰸|𐰹|𐰲|𐰳)𐰚/g, "$1\𐰴");
+        text = text.replace(/𐰴(?=𐰅|𐰄|𐰂)/g, "𐰚");
+        text = text.replace(/𐰴(?=𐰈|𐰇)/g, "𐰜");
+        text = text.replace(/𐰜(?=𐰀)/g, "𐰴");
+        text = text.replace(/𐰜(?=𐰃)/g, "𐰶");
+        text = text.replace(/𐰜(?=𐰅|𐰄|𐰂)/g, "𐰚");
+        text = text.replace(/𐰜(?=𐰆)/g, "𐰸");
+        text = text.replace(/(𐰉|𐰊|𐰑|𐰒|𐰍|𐰎|𐰀𐰢|𐰃𐰢|𐰆𐰢| 𐰀𐰯|𐰃𐰯|𐰆𐰯|𐰞|𐰟|𐰣|𐰀𐰭|𐰃𐰭|𐰆𐰭|𐰺|𐰻|𐰽|𐰀𐱁|𐰃𐱁|𐰆𐱁|𐱃|𐱄|𐰖|𐰗|𐰴|𐰵|𐰸|𐰹|𐰲|𐰳)𐰋/g, "$1\𐰉");
+        text = text.replace(/(𐰉|𐰊|𐰑|𐰒|𐰍|𐰎|𐰀𐰢|𐰃𐰢|𐰆𐰢| 𐰀𐰯|𐰃𐰯|𐰆𐰯|𐰞|𐰟|𐰣|𐰀𐰭|𐰃𐰭|𐰆𐰭|𐰺|𐰻|𐰽|𐰀𐱁|𐰃𐱁|𐰆𐱁|𐱃|𐱄|𐰖|𐰗|𐰴|𐰵|𐰸|𐰹|𐰲|𐰳)𐰓/g, "$1\𐰒");
+        text = text.replace(/(𐰉|𐰊|𐰑|𐰒|𐰍|𐰎|𐰀𐰢|𐰃𐰢|𐰆𐰢| 𐰀𐰯|𐰃𐰯|𐰆𐰯|𐰞|𐰟|𐰣|𐰀𐰭|𐰃𐰭|𐰆𐰭|𐰺|𐰻|𐰽|𐰀𐱁|𐰃𐱁|𐰆𐱁|𐱃|𐱄|𐰖|𐰗|𐰴|𐰵|𐰸|𐰹|𐰲|𐰳)𐰠/g, "$1\𐰞");
+        text = text.replace(/(𐰉|𐰊|𐰑|𐰒|𐰍|𐰎|𐰀𐰢|𐰃𐰢|𐰆𐰢| 𐰀𐰯|𐰃𐰯|𐰆𐰯|𐰞|𐰟|𐰣|𐰀𐰭|𐰃𐰭|𐰆𐰭|𐰺|𐰻|𐰽|𐰀𐱁|𐰃𐱁|𐰆𐱁|𐱃|𐱄|𐰖|𐰗|𐰴|𐰵|𐰸|𐰹|𐰲|𐰳)𐰤/g, "$1\𐰣");
+        text = text.replace(/(𐰉|𐰊|𐰑|𐰒|𐰍|𐰎|𐰀𐰢|𐰃𐰢|𐰆𐰢| 𐰀𐰯|𐰃𐰯|𐰆𐰯|𐰞|𐰟|𐰣|𐰀𐰭|𐰃𐰭|𐰆𐰭|𐰺|𐰻|𐰽|𐰀𐱁|𐰃𐱁|𐰆𐱁|𐱃|𐱄|𐰖|𐰗|𐰴|𐰵|𐰸|𐰹|𐰲|𐰳)𐰼/g, "$1\𐰺");
+        text = text.replace(/(𐰉|𐰊|𐰑|𐰒|𐰍|𐰎|𐰀𐰢|𐰃𐰢|𐰆𐰢| 𐰀𐰯|𐰃𐰯|𐰆𐰯|𐰞|𐰟|𐰣|𐰀𐰭|𐰃𐰭|𐰆𐰭|𐰺|𐰻|𐰽|𐰀𐱁|𐰃𐱁|𐰆𐱁|𐱃|𐱄|𐰖|𐰗|𐰴|𐰵|𐰸|𐰹|𐰲|𐰳)𐰾/g, "$1\𐰽");
+        text = text.replace(/(𐰉|𐰊|𐰑|𐰒|𐰍|𐰎|𐰀𐰢|𐰃𐰢|𐰆𐰢| 𐰀𐰯|𐰃𐰯|𐰆𐰯|𐰞|𐰟|𐰣|𐰀𐰭|𐰃𐰭|𐰆𐰭|𐰺|𐰻|𐰽|𐰀𐱁|𐰃𐱁|𐰆𐱁|𐱃|𐱄|𐰖|𐰗|𐰴|𐰵|𐰸|𐰹|𐰲|𐰳)𐱅/g, "$1\𐱄");
+        text = text.replace(/𐰉(?=𐰅|𐰄|𐰈|𐰇|𐰂)/g, "𐰋");
+        text = text.replace(/𐰍(?=𐰅|𐰄|𐰈|𐰇|𐰂)/g, "𐰏");
+        text = text.replace(/𐰒(?=𐰅|𐰄|𐰈|𐰇|𐰂)/g, "𐰓");
+        text = text.replace(/𐰳(?=𐰅|𐰄|𐰈|𐰇|𐰂)/g, "𐰙");
+        text = text.replace(/𐰖(?=𐰅|𐰄|𐰈|𐰇|𐰂)/g, "𐰘");
+        text = text.replace(/𐰞(?=𐰅|𐰄|𐰈|𐰇|𐰂)/g, "𐰠");
+        text = text.replace(/𐰣(?=𐰅|𐰄|𐰈|𐰇|𐰂)/g, "𐰤");
+        text = text.replace(/𐰺(?=𐰅|𐰄|𐰈|𐰇|𐰂)/g, "𐰼");
+        text = text.replace(/𐰽(?=𐰅|𐰄|𐰈|𐰇|𐰂)/g, "𐰾");
+        text = text.replace(/𐱄(?=𐰅|𐰄|𐰈|𐰇|𐰂)/g, "𐱅");
+        text = text.replace(/𐰱(?=𐰅|𐰈|𐰇|𐰂|𐰀|𐰆|𐰃)/g, "𐰲");
+    }
+    return text;
+};
+</script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
