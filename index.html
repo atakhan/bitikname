@@ -20,9 +20,9 @@
       </div>
       <div class="row">
         <div class="col">
-          <input id="userInput" placeholder="Текстти бул жерге көчүрүңүз /жазыңыз" spellcheck="false">
-          <button onclick="document.getElementById('result').textContent = convert_to_enesaj(document.getElementById('userInput').value); document.getElementById('result').setAttribute('dir', 'rtl');" title="Кирил арибиндеги текстти байырқы қырғыз [руна сымал] жазмасына қоторуңуз"></em>Перевести на 𐰄𐱅𐰄𐰚</button>
-          <button class="buton" onclick="document.getElementById('userInput').value = ''; document.getElementById('result').textContent = '';">Очистить</button>
+          <input class="form-control" id="userInput" placeholder="Введите имя" spellcheck="false">
+          <button class="btn btn-primary" onclick="document.getElementById('result').textContent = convert_to_enesaj(document.getElementById('userInput').value); document.getElementById('result').setAttribute('dir', 'rtl');" title="Кирил арибиндеги текстти байырқы қырғыз [руна сымал] жазмасына қоторуңуз"></em>Перевести на 𐰄𐱅𐰄𐰚</button>
+          <button class="btn btn-primary" onclick="document.getElementById('userInput').value = ''; document.getElementById('result').textContent = '';">Очистить</button>
         </div>
       </div>
       <hr>
